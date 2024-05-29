@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_home"
+            android:checked="false"
+            android:enabled="true"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_map"
+            android:checked="false"
+            android:enabled="true"
+            android:icon="@drawable/ic_location"
+            android:title="@string/location" />
+        <item
+            android:id="@+id/nav_add"
+            android:checked="false"
+            android:enabled="true"
+            android:icon="@drawable/ic_add"
+            android:title="@string/add" />
+        <item
+            android:id="@+id/nav_rewards"
+            android:checked="false"
+            android:enabled="true"
+            android:icon="@drawable/ic_rewards"
+            android:title="@string/rewards" />
+        <item
+            android:id="@+id/nav_my_account"
+            android:checked="false"
+            android:enabled="true"
+            android:title="@string/my_account"
+            android:icon="@drawable/ic_account"/>
+    </group>
+</menu>

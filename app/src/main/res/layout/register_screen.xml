@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/usernameTxt"
+        android:layout_width="244dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="300dp"
+        android:ems="10"
+        android:hint="@string/username_txt"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/password2Txt"
+        android:layout_width="244dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="280dp"
+        android:ems="10"
+        android:hint="@string/password_txt"
+        android:importantForAutofill="no"
+        android:inputType="text|textPassword|textNoSuggestions"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTxt"
+        app:layout_constraintVertical_bias="0.661" />
+
+    <TextView
+        android:id="@+id/enterUsrNmTxtLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/enter_username"
+        app:layout_constraintBottom_toTopOf="@+id/usernameTxt"
+        app:layout_constraintStart_toStartOf="@+id/usernameTxt" />
+
+    <TextView
+        android:id="@+id/enterPswdLightTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/enter_password"
+        app:layout_constraintBottom_toTopOf="@+id/password2Txt"
+        app:layout_constraintStart_toStartOf="@+id/password2Txt" />
+
+    <TextView
+        android:id="@+id/reEnterPswdLightTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/reenter_password"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="244dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Re-enter password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password2Txt" />
+
+    <Button
+        android:id="@+id/cancelLightBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/cancel"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <Button
+        android:id="@+id/registerCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelLightBtn"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
