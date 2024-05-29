@@ -1,12 +1,17 @@
 package com.example.androidrecycle;
 
 import android.accounts.Account;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.androidrecycle.databinding.*;
@@ -27,6 +32,7 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_nav_bar);
 
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
@@ -38,16 +44,42 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
     RewardsFragment rewardsFragment = new RewardsFragment();
     AccountFragment accountFragment = new AccountFragment();
 
+
+    FragmentContainer container =  new FragmentContainer() {
+        @Nullable
+        @Override
+        public View onFindViewById(int id) {
+            return null;
+        }
+
+        @Override
+        public boolean onHasView() {
+            return false;
+        }
+    };
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_, homeFragment).commit();
-                return true;
-            case R.id.nav_map:
-                getSupportFragmentManager().beginTransaction().replace(, mapFragment);
 
+        int id = item.getItemId();
+
+        if(id == R.id.nav_home){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,homeFragment).commit();
+            return true;
+        } else if (id == R.id.nav_map) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,mapFragment).commit();
+            return true;
+        } else if (id == R.id.nav_add) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,addFragment).commit();
+            return true;
+        } else if (id == R.id.nav_rewards) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,rewardsFragment).commit();
+            return true;
+        } else if (id == R.id.nav_my_account){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, accountFragment).commit();
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }
