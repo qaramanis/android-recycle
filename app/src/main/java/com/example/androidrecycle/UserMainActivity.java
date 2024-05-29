@@ -21,6 +21,7 @@ import com.example.androidrecycle.ui.add.AddFragment;
 import com.example.androidrecycle.ui.home.HomeFragment;
 import com.example.androidrecycle.ui.map.MapFragment;
 import com.example.androidrecycle.ui.rewards.RewardsFragment;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -78,6 +79,7 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         } else if (id == R.id.nav_map) {
             SupportMapFragment mapFragment = SupportMapFragment.newInstance();
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView, mapFragment).commit();
+            mapFragment.getMapAsync(this);
             return true;
         } else if (id == R.id.nav_add) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,addFragment).commit();
@@ -95,8 +97,10 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
 
 
     public void onMapReady(GoogleMap googleMap) {
+        LatLng sydney = new LatLng(-33.852, 151.211);
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(0, 0))
+                .position(sydney)
                 .title("Marker"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
