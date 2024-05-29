@@ -15,24 +15,4 @@ import com.example.androidrecycle.databinding.FragmentMapBinding;
 
 public class MapFragment extends Fragment {
 
-    private FragmentMapBinding binding;
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        MapViewModel mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
-        binding = FragmentMapBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textMap;
-        mapViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
-    }
-
-    @Override
-    public void onDestroyView(){
-        super.onDestroyView();
-        binding = null;
-    }
-
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.androidrecycle.databinding.*;
@@ -20,10 +21,15 @@ import com.example.androidrecycle.ui.add.AddFragment;
 import com.example.androidrecycle.ui.home.HomeFragment;
 import com.example.androidrecycle.ui.map.MapFragment;
 import com.example.androidrecycle.ui.rewards.RewardsFragment;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class UserMainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+public class UserMainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, OnMapReadyCallback {
 
     BottomNavigationView bottomNavigationView;
 
@@ -39,7 +45,7 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
     }
 
     HomeFragment homeFragment = new HomeFragment();
-    MapFragment mapFragment = new MapFragment();
+    //MapFragment mapFragment = new MapFragment();
     AddFragment addFragment = new AddFragment();
     RewardsFragment rewardsFragment = new RewardsFragment();
     AccountFragment accountFragment = new AccountFragment();
@@ -58,6 +64,9 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         }
     };
 
+
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -67,7 +76,8 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,homeFragment).commit();
             return true;
         } else if (id == R.id.nav_map) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,mapFragment).commit();
+            SupportMapFragment mapFragment = SupportMapFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView, mapFragment).commit();
             return true;
         } else if (id == R.id.nav_add) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,addFragment).commit();
@@ -81,5 +91,12 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         } else {
             return false;
         }
+    }
+
+
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
     }
 }
