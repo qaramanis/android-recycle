@@ -19,7 +19,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="com.example.androidrecycle.ui.home.HomeFragment"
-        android:layout_width="143dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="?attr/actionBarSize"
         android:paddingBottom="84dp"
@@ -45,5 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/user_bottom_app_bar" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

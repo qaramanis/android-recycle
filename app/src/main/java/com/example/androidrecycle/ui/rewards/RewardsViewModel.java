@@ -9,7 +9,7 @@ public class RewardsViewModel extends ViewModel {
 
     public RewardsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Rewards Fragment");
+        mText.setValue("This is Rewards fragment");
     }
 
     public LiveData<String> getText(){return mText;}

@@ -12,17 +12,28 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.androidrecycle.R;
 import com.example.androidrecycle.databinding.FragmentAddBinding;
 
+import org.w3c.dom.Text;
+
 public class AddFragment extends Fragment {
 
+    private FragmentAddBinding binding;
+
     @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_add, container, false);
+        AddViewModel addViewModel = new ViewModelProvider(this).get(AddViewModel.class);
+        binding = FragmentAddBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final TextView textView = binding.textAdd;
+        addViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return root;
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onDestroyView(){
+        super.onDestroyView();
+        binding = null;
     }
 }
