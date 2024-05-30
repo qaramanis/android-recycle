@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.window.OnBackInvokedDispatcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,19 +53,6 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
     AccountFragment accountFragment = new AccountFragment();
 
 
-    FragmentContainer container =  new FragmentContainer() {
-        @Nullable
-        @Override
-        public View onFindViewById(int id) {
-            return null;
-        }
-
-        @Override
-        public boolean onHasView() {
-            return false;
-        }
-    };
-
 
 
 
@@ -100,7 +88,13 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         LatLng sydney = new LatLng(-33.852, 151.211);
         googleMap.addMarker(new MarkerOptions()
                 .position(sydney)
-                .title("Marker"));
+                .title("Sydney"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    @NonNull
+    @Override
+    public OnBackInvokedDispatcher getOnBackInvokedDispatcher() {
+        return super.getOnBackInvokedDispatcher();
     }
 }

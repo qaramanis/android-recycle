@@ -56,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
+                Intent intent = new Intent(RegisterActivity.this, UserMainActivity.class);
+                startActivity(intent);
                 return true;
             }
         });
