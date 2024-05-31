@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.activity.v160alpha05)
     implementation(libs.play.services.maps)
     implementation(libs.appcompat)
     implementation(libs.material)

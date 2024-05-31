@@ -18,9 +18,6 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView usernameTextView, passwordTextView;
     Button loginBtn;
-    PopupWindow popupWindow;
-
-    private String dbIP = "";
 
     //User loginUser;
     @Override
@@ -40,14 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         boolean credentials_match = credentialsMatch();
         loginBtn.setOnClickListener(v -> {
             if (credentials_match){
-                int i =1;
+
             }else{
-                onButtonShowPopupWindowClickWhenWrongCredentials(v);
+                showWrongCredentialsPopup(v);
             }
         });
     }
 
-    public void onButtonShowPopupWindowClickWhenWrongCredentials(View view){
+    public void showWrongCredentialsPopup(View view){
 
         //inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
