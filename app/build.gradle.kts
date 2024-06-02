@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation (libs.androidx.viewpager2)
     implementation(libs.activity.v160alpha05)
     implementation(libs.play.services.maps)
     implementation(libs.appcompat)
