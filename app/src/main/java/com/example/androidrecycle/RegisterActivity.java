@@ -58,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                 popupWindow.dismiss();
                 Intent intent = new Intent(RegisterActivity.this, UserMainActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             }
         });
@@ -67,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             popupWindow.dismiss();
             Intent intent = new Intent(RegisterActivity.this, UserMainActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 }

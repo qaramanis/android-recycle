@@ -18,7 +18,6 @@
     <string name="home">Home</string>
     <string name="rewards">Rewards</string>
     <string name="logout">Log-out</string>
-    <string name="title_activity_user_main">userMain</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -31,6 +30,10 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="my_account">My Account</string>
     <string name="location">Map</string>
+    <string name="map">Map</string>
     <string name="logoutOrExit">Do you want to Logout or Exit the application?</string>
     <string name="exit">Exit</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="submit">Submit</string>
 </resources>

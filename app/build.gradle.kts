@@ -34,14 +34,16 @@ android {
     composeOptions{
         kotlinCompilerExtensionVersion = "1.5.13"
     }
-
 }
 
 dependencies {
     implementation(libs.activity.v160alpha05)
     implementation(libs.play.services.maps)
     implementation(libs.appcompat)
+    implementation(libs.androidx.appcompat.v100)
+    implementation(libs.material3)
     implementation(libs.material)
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
@@ -50,6 +52,7 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

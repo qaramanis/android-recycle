@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             popupWindow.dismiss();
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 
