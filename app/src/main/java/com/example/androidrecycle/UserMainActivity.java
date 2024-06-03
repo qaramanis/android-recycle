@@ -31,7 +31,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import org.w3c.dom.Text;
 
-public class UserMainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
+public class UserMainActivity extends AppCompatActivity implements FragmentSwitcher,NavigationBarView.OnItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
     @Override
@@ -52,6 +52,12 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+    }
+
+    public void switchFragment(int itemId) {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(itemId);
     }
 
 
@@ -68,7 +74,6 @@ public class UserMainActivity extends AppCompatActivity implements NavigationBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.topToolbar);
         setSupportActionBar(toolbar);
         TextView textView = (TextView) findViewById(R.id.toolbarTitleTxt);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         int id = item.getItemId();
 
