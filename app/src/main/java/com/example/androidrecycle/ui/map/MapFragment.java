@@ -31,7 +31,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
-
+    //TODO fix markers
     public void onMapReady(GoogleMap googleMap) {
         LatLng sydney = new LatLng(-33.852, 151.211);
         googleMap.addMarker(new MarkerOptions()
