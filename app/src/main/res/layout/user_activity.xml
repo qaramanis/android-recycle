@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<<< HEAD:app/src/main/res/layout/user_activity.xml
     tools:context=".UserMainActivity"
     android:fitsSystemWindows="true">
 
+========
+    android:fitsSystemWindows="true"
+    tools:context=".UserMainActivity">
+>>>>>>>> origin/master:app/src/main/res/layout/activity_user_main.xml
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.androidrecycle.ui.home.HomeFragment"
+        android:name="com.example.androidrecycle.user.home.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="93dp"
@@ -28,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/user_bottom_app_bar" />
+        app:menu="@menu/nav_bar_user" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topToolbar"

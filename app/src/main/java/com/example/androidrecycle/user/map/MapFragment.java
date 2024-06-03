@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.map;
+package com.example.androidrecycle.user.map;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

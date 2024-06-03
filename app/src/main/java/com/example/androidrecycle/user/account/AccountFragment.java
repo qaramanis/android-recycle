@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.account;
+package com.example.androidrecycle.user.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
