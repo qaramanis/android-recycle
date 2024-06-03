@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="8dp"
-    tools:context=".ui.add.AddFragment"
+    tools:context=".user.add.AddFragment"
     tools:ignore="HardcodedText">
 
 
@@ -53,7 +53,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="com.example.androidrecycle.ui.add.PaperFragment"
+        android:name="com.example.androidrecycle.user.add.PaperFragment"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

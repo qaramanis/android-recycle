@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.androidrecycle.ui.add.AddFragment"
+        android:name="com.example.androidrecycle.user.add.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" >
         <action
@@ -28,22 +28,22 @@
     </fragment>
     <fragment
         android:id="@+id/paperFragment"
-        android:name="com.example.androidrecycle.ui.add.PaperFragment"
+        android:name="com.example.androidrecycle.user.add.PaperFragment"
         android:label="fragment_paper"
         tools:layout="@layout/fragment_paper" />
     <fragment
         android:id="@+id/aluminumFragment"
-        android:name="com.example.androidrecycle.ui.add.AluminumFragment"
+        android:name="com.example.androidrecycle.user.add.AluminumFragment"
         android:label="fragment_aluminum"
         tools:layout="@layout/fragment_aluminum" />
     <fragment
         android:id="@+id/otherFragment"
-        android:name="com.example.androidrecycle.ui.add.OtherFragment"
+        android:name="com.example.androidrecycle.user.add.OtherFragment"
         android:label="fragment_other"
         tools:layout="@layout/fragment_other" />
     <fragment
         android:id="@+id/glassFragment"
-        android:name="com.example.androidrecycle.ui.add.GlassFragment"
+        android:name="com.example.androidrecycle.user.add.GlassFragment"
         android:label="fragment_glass"
         tools:layout="@layout/fragment_glass" />
 </navigation>

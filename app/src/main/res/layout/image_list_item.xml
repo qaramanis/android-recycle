@@ -9,7 +9,7 @@
     android:layout_marginEnd="4dp"
     android:foreground="?attr/selectableItemBackground"
     app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
-    tools:context=".ui.rewards.RewardsFragment">
+    tools:context=".user.rewards.RewardsFragment">
 
     <ImageView
         android:id="@+id/item_image"

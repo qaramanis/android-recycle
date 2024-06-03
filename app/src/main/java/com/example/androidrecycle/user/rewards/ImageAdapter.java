@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.rewards;
+package com.example.androidrecycle.user.rewards;
 
 import android.content.Context;
 import android.view.LayoutInflater;

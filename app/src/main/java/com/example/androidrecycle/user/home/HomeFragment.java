@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.home;
+package com.example.androidrecycle.user.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         else
             availableText.setVisibility(View.GONE);
 
-        availableText.setOnClickListener(v -> fragmentSwitcher.switchFragment(R.id.nav_rewards));
+        availableText.setOnClickListener(v -> fragmentSwitcher.switchFragment(R.id.user_rewards));
 
         TextView paperText = getView().findViewById(R.id.paperPointsTxt);
         paperText.setText("Paper points: " + paperPoints);

@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView usernameTextView, passwordTextView;
     Button loginBtn;
+    Intent intent;
 
     //User loginUser;
     @Override
@@ -30,16 +31,16 @@ public class LoginActivity extends AppCompatActivity {
         passwordTextView = findViewById(R.id.password2Txt);
         loginBtn = findViewById(R.id.loginBtn);
 
+        intent = new Intent(LoginActivity.this, RegisterActivity.class);
         TextView hereTxt = findViewById(R.id.hereBacklinkTxt);
-        final Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         hereTxt.setOnClickListener(v -> startActivity(intent));
 
-        boolean credentials_match = credentialsMatch();
+        Integer credentials = 1;
         loginBtn.setOnClickListener(v -> {
-            if (credentials_match){
+            switch (credentials){
+                case 0:
+                    intent = new Intent(LoginActivity.this, RegisterActivity.class);
 
-            }else{
-                showWrongCredentialsPopup(v);
             }
         });
     }
@@ -82,13 +83,5 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-    }
-
-    private boolean credentialsMatch() {
-        String usrnm;
-        String pswd;
-        String url = "";
-
-        return false;
     }
 }

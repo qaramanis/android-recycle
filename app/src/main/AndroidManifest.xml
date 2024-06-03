@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
 
     <application
         android:allowBackup="true"
@@ -18,9 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.AndroidRecycle"
         tools:targetApi="31">
+        <activity
+            android:name=".AdminMainActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBVVhsa0U10yiRlME-YqTSND35TzRW0fBE"/>
+            android:value="AIzaSyBVVhsa0U10yiRlME-YqTSND35TzRW0fBE" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -30,14 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".RegisterActivity">
-        </activity>
-        <activity
-            android:name=".UserMainActivity">
-        </activity>
-
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".UserMainActivity"></activity>
     </application>
 
 </manifest>

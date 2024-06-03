@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.add;
+package com.example.androidrecycle.user.add;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

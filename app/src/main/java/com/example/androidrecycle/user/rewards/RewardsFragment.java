@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.rewards;
+package com.example.androidrecycle.user.rewards;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +25,14 @@ public class RewardsFragment extends Fragment {
         RecyclerView recyclerView = getView().findViewById(R.id.recycler);
         List<Integer> imageList = Arrays.asList(
                 R.drawable.ic_account,
-                R.drawable.ic_rewards
+                R.drawable.ic_rewards,
+                R.drawable.circular_shape,
+                R.drawable.circular_shape,
+                R.drawable.circular_shape,
+                R.drawable.circular_shape,
+                R.drawable.circular_shape,
+                R.drawable.circular_shape,
+                R.drawable.circular_shape
         );
 
         ImageAdapter adapter = new ImageAdapter(requireContext(), imageList);
