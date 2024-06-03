@@ -1,4 +1,4 @@
-package com.example.androidrecycle.ui.home;
+package com.example.androidrecycle.user.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.androidrecycle.R;
+import com.example.androidrecycle.user.home.FragmentSwitcher;
 
 public class HomeFragment extends Fragment{
 

@@ -1,9 +1,14 @@
-package com.example.androidrecycle.ui.add;
+package com.example.androidrecycle.user.add;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.androidrecycle.user.add.AluminumFragment;
+import com.example.androidrecycle.user.add.GlassFragment;
+import com.example.androidrecycle.user.add.OtherFragment;
+import com.example.androidrecycle.user.add.PaperFragment;
 
 import java.util.ArrayList;
 import java.util.List;

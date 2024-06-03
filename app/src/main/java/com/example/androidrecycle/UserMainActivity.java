@@ -20,11 +20,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.androidrecycle.ui.account.AccountFragment;
-import com.example.androidrecycle.ui.add.AddFragment;
-import com.example.androidrecycle.ui.home.HomeFragment;
-import com.example.androidrecycle.ui.map.MapFragment;
-import com.example.androidrecycle.ui.home.FragmentSwitcher;
+import com.example.androidrecycle.user.account.AccountFragment;
+import com.example.androidrecycle.user.add.AddFragment;
+import com.example.androidrecycle.user.home.HomeFragment;
+import com.example.androidrecycle.user.map.MapFragment;
+import com.example.androidrecycle.user.home.FragmentSwitcher;
 import com.example.androidrecycle.ui.rewards.RewardsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;

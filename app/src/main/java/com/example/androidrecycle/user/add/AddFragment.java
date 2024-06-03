@@ -31,7 +31,7 @@ public class AddFragment extends Fragment{
 //        adapter.addFragment(new OtherFragment(), "Other");
 
 
-        viewPager2.setAdapter(new ViewPagerAdapter(requireActivity()));
+        viewPager2.setAdapter(new com.example.androidrecycle.user.add.ViewPagerAdapter(requireActivity()));
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> tab.setText("Item " + (position + 1))
         ).attach();
