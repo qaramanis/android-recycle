@@ -2,6 +2,7 @@
 activityVersion = "1.6.0-alpha05"
 agp = "8.4.1"
 appcompatVersion = "1.0.0"
+glide = "4.16.0"
 googleMaterial = "1.4.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -28,6 +29,7 @@ activity-v160alpha05 = { module = "androidx.activity:activity", version.ref = "a
 androidx-appcompat-v100 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 androidx-material3-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3AdaptiveNavigationSuite" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

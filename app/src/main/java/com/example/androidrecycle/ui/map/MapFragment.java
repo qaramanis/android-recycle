@@ -1,25 +1,14 @@
 package com.example.androidrecycle.ui.map;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.androidrecycle.R;
-import com.example.androidrecycle.databinding.FragmentMapBinding;
-import com.example.androidrecycle.databinding.FragmentRewardsBinding;
-import com.example.androidrecycle.ui.rewards.RewardsViewModel;
-import com.google.android.gms.common.SupportErrorDialogFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
