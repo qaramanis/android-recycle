@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
-public class popupHandler {
+public class PopupHandler {
 
 
-    public popupHandler(){
+    public PopupHandler(){
         super();
     }
 

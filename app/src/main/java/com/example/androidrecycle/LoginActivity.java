@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        popupHandler.dimBehind(popupWindow);
+        PopupHandler.dimBehind(popupWindow);
         // dismiss the popup window when touched
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override

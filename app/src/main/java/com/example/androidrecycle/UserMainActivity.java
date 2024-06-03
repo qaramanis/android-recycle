@@ -1,6 +1,5 @@
 package com.example.androidrecycle;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -25,11 +24,10 @@ import com.example.androidrecycle.ui.account.AccountFragment;
 import com.example.androidrecycle.ui.add.AddFragment;
 import com.example.androidrecycle.ui.home.HomeFragment;
 import com.example.androidrecycle.ui.map.MapFragment;
+import com.example.androidrecycle.ui.home.FragmentSwitcher;
 import com.example.androidrecycle.ui.rewards.RewardsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import org.w3c.dom.Text;
 
 public class UserMainActivity extends AppCompatActivity implements FragmentSwitcher,NavigationBarView.OnItemSelectedListener{
 
@@ -116,7 +114,7 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
         popupWindow.setElevation(30);
 
         popupWindow.showAtLocation(findViewById(R.id.bottom_navigation), Gravity.CENTER, 0, 0);
-        popupHandler.dimBehind(popupWindow);
+        PopupHandler.dimBehind(popupWindow);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override

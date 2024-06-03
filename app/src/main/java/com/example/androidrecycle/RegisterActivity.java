@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         popupWindow.setElevation(30);
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        popupHandler.dimBehind(popupWindow);
+        PopupHandler.dimBehind(popupWindow);
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override

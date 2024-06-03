@@ -5,19 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidrecycle.ImageAdapter;
 import com.example.androidrecycle.R;
-import com.example.androidrecycle.databinding.FragmentRewardsBinding;
 import com.google.android.material.carousel.CarouselLayoutManager;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +28,7 @@ public class RewardsFragment extends Fragment {
                 R.drawable.ic_rewards
         );
 
-        ImageAdapter adapter = new ImageAdapter(RewardsFragment.this, imageList);
+        ImageAdapter adapter = new ImageAdapter(requireContext(), imageList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new CarouselLayoutManager());
         adapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
