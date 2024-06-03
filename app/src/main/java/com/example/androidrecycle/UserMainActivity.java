@@ -36,7 +36,7 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.bottom_nav_bar);
+        setContentView(R.layout.user_activity);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -49,8 +49,7 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-
+        bottomNavigationView.setSelectedItemId(R.id.user_home);
     }
 
     public void switchFragment(int itemId) {
@@ -69,31 +68,31 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.topToolbar);
+        Toolbar toolbar = findViewById(R.id.topToolbar);
         setSupportActionBar(toolbar);
-        TextView textView = (TextView) findViewById(R.id.toolbarTitleTxt);
+        TextView textView = findViewById(R.id.toolbarTitleTxt);
 
         int id = item.getItemId();
 
-        if(id == R.id.nav_home){
+        if(id == R.id.user_home){
                 textView.setText(R.string.home);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,homeFragment).commit();
             return true;
-        } else if (id == R.id.nav_map) {
+        } else if (id == R.id.user_map) {
             textView.setText(R.string.map);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,MapFragment.class, null).setReorderingAllowed(true)
                     .addToBackStack(null).commit();
             return true;
-        } else if (id == R.id.nav_add) {
+        } else if (id == R.id.user_add) {
             textView.setText(R.string.add);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,AddFragment.class, null).setReorderingAllowed(true)
                     .addToBackStack(null).commit();
             return true;
-        } else if (id == R.id.nav_rewards) {
+        } else if (id == R.id.user_rewards) {
             textView.setText(R.string.rewards);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,rewardsFragment).commit();
             return true;
-        } else if (id == R.id.nav_my_account){
+        } else if (id == R.id.user_account){
             textView.setText(R.string.my_account);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, accountFragment).commit();
             return true;

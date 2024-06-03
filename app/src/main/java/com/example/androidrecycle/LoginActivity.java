@@ -34,12 +34,16 @@ public class LoginActivity extends AppCompatActivity {
         final Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         hereTxt.setOnClickListener(v -> startActivity(intent));
 
-        boolean credentials_match = credentialsMatch();
+        int credentials = 2;
         loginBtn.setOnClickListener(v -> {
-            if (credentials_match){
-
-            }else{
-                showWrongCredentialsPopup(v);
+            //TODO add function that checks credentials from a database
+            switch (credentials){
+                case 0:
+                    //TODO start user
+                case 1:
+                    //TODO start admin
+                default:
+                    showWrongCredentialsPopup(v);
             }
         });
     }
@@ -84,11 +88,4 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private boolean credentialsMatch() {
-        String usrnm;
-        String pswd;
-        String url = "";
-
-        return false;
-    }
 }

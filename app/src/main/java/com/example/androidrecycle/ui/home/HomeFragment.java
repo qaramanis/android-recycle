@@ -1,5 +1,6 @@
 package com.example.androidrecycle.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +14,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidrecycle.R;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
 
     int points = 47;
-    int totalPoints;
-    int paperPoints, glassPoints, aluminumPoints, otherPoints;
+    int totalPoints = 0;
+    int paperPoints = 0, glassPoints = 0, aluminumPoints = 0, otherPoints = 0;
     private FragmentSwitcher fragmentSwitcher;
+
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,35 +29,35 @@ public class HomeFragment extends Fragment {
 
         totalPoints = paperPoints + glassPoints + aluminumPoints + otherPoints;
 
-        ProgressBar progressBar = getView().findViewById(R.id.progressBar);
-        TextView progressText = getView().findViewById(R.id.progress_text);
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
+        TextView progressText = view.findViewById(R.id.progress_text);
 
-        progressText.setText(points + "/100");
+        progressText.setText(String.format("%d/100", points));
         progressBar.setProgress(points);
 
 
-        TextView availableText = getView().findViewById(R.id.avaialbleTxt);
+        TextView availableText = view.findViewById(R.id.avaialbleTxt);
         if(points>=100)
-            availableText.setVisibility(View.VISIBLE);
+            availableText.setText("No rewards available");
         else
-            availableText.setVisibility(View.GONE);
+            availableText.setText("Rewards are available");
 
-        availableText.setOnClickListener(v -> fragmentSwitcher.switchFragment(R.id.nav_rewards));
+        availableText.setOnClickListener(v -> fragmentSwitcher.switchFragment(R.id.user_map));
 
-        TextView paperText = getView().findViewById(R.id.paperPointsTxt);
-        paperText.setText("Paper points: " + paperPoints);
+        TextView paperText = view.findViewById(R.id.paperPointsTxt);
+        paperText.setText(String.format("Paper points: %d", paperPoints));
 
-        TextView glassText = getView().findViewById(R.id.glassPointTxt);
-        glassText.setText("Glass points: " + glassPoints);
+        TextView glassText = view.findViewById(R.id.glassPointTxt);
+        glassText.setText(String.format("Glass points: %d", glassPoints));
 
-        TextView aluminumText = getView().findViewById(R.id.aluminumPointsTxt);
-        aluminumText.setText("Aluminum points: " + aluminumPoints);
+        TextView aluminumText = view.findViewById(R.id.aluminumPointsTxt);
+        aluminumText.setText(String.format("Aluminum points: %d", aluminumPoints));
 
-        TextView otherText = getView().findViewById(R.id.otherPointsTxt);
-        otherText.setText("Other points: " + otherPoints);
+        TextView otherText = view.findViewById(R.id.otherPointsTxt);
+        otherText.setText(String.format("Other points: %d", otherPoints));
 
-        TextView totalText = getView().findViewById(R.id.totalText);
-        totalText.setText("Total points: " + totalPoints);
+        TextView totalText = view.findViewById(R.id.totalText);
+        totalText.setText(String.format("Total points: %d", totalPoints));
 
         return view;
     }

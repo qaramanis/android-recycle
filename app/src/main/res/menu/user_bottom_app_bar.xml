@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/user_home"
             android:checked="false"
             android:enabled="true"
             android:icon="@drawable/ic_home"
             android:title="@string/home" />
         <item
-            android:id="@+id/nav_map"
+            android:id="@+id/user_map"
             android:checked="false"
             android:enabled="true"
             android:icon="@drawable/ic_location"
             android:title="@string/location" />
         <item
-            android:id="@+id/nav_add"
+            android:id="@+id/user_add"
             android:checked="false"
             android:enabled="true"
             android:icon="@drawable/ic_add"
             android:title="@string/add" />
         <item
-            android:id="@+id/nav_rewards"
+            android:id="@+id/user_rewards"
             android:checked="false"
             android:enabled="true"
             android:icon="@drawable/ic_rewards"
             android:title="@string/rewards" />
         <item
-            android:id="@+id/nav_my_account"
+            android:id="@+id/user_account"
             android:checked="false"
             android:enabled="true"
             android:title="@string/my_account"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -23,12 +24,18 @@ public class AccountFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        ListView listView = getView().findViewById(R.id.account_list);
-        List<String> itemList = Arrays.asList("Item 1", "Item 2", "Item 3");
+        ImageView imageView = view.findViewById(R.id.imageView);
+        imageView.setImageResource(R.drawable.ic_account);
+
+        ListView listView = view.findViewById(R.id.account_list);
+        List<String> itemList = Arrays.asList("Rewards History","Change Password", "Logout");
 
         CustomListAdapter adapter = new CustomListAdapter(requireContext(), itemList);
         listView.setAdapter(adapter);
 
         return view;
     }
+
+    //TODO add actions on item clicked
+    //TODO add username and id implementation
 }
