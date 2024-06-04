@@ -38,4 +38,7 @@
     <string name="submit">Submit</string>
     <string name="check">Check</string>
     <string name="available">Rewards available</string>
+    <string name="requests">Requests</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

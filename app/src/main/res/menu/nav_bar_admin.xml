@@ -11,13 +11,12 @@
         android:checked="false"
         android:enabled="true"
         android:icon="@drawable/ic_request"
-        android:title="@string/home" />
+        android:title="@string/requests" />
     <item
         android:id="@+id/admin_account"
         android:checked="false"
         android:enabled="true"
         android:icon="@drawable/ic_account"
-        android:title="@string/home" />
-
+        android:title="@string/my_account" />
 
 </menu>

@@ -2,6 +2,7 @@ package com.example.androidrecycle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView usernameTextView, passwordTextView;
     Button loginBtn;
+    Intent intent;
 
     //User loginUser;
     @Override
@@ -31,41 +33,37 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
 
         TextView hereTxt = findViewById(R.id.hereBacklinkTxt);
-        final Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        intent = new Intent(LoginActivity.this, RegisterActivity.class);
         hereTxt.setOnClickListener(v -> startActivity(intent));
 
-        int credentials = 2; //0 for user, 1 for admin, 2 for wrong
+        int credentials = 1; //0 for user, 1 for admin, 2 for wrong
         loginBtn.setOnClickListener(v -> {
             //TODO add function that checks credentials from a database
-            switch (credentials){
-                case 0:
-                    //TODO start user
-                case 1:
-                    //TODO start admin
-                default:
-                    showWrongCredentialsPopup(v);
-            }
+            if(credentials==0){
+                intent.setClass(LoginActivity.this, UserMainActivity.class);
+                startActivity(intent);
+                finish();
+            }else if (credentials==1){
+                intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+                startActivity(intent);
+                finish();
+            }else showWrongCredentialsPopup(v);
         });
     }
 
     public void showWrongCredentialsPopup(View view){
 
-        //inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_credentials_light, null);
 
-        // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.setElevation(30);
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         PopupHandler.dimBehind(popupWindow);
-        // dismiss the popup window when touched
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -74,11 +72,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // dismiss the popup window using a button
         Button tryAgainBtn = popupView.findViewById(R.id.tryAgainBtn);
         tryAgainBtn.setOnClickListener(v -> popupWindow.dismiss());
 
-        // go to register activity using a button
         Button registerButton = popupView.findViewById(R.id.registerBtn);
         registerButton.setOnClickListener(v -> {
             popupWindow.dismiss();

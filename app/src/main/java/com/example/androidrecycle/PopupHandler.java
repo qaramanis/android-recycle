@@ -15,7 +15,7 @@ import android.widget.PopupWindow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PopupHandler extends AppCompatActivity {
+public class PopupHandler {
 
 
     public PopupHandler(){
@@ -52,40 +52,5 @@ public class PopupHandler extends AppCompatActivity {
         return container;
     }
 
-
-    public void showExitPopup(Intent intent){
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View  popupView = inflater.inflate(R.layout.popup_user_exit_light, null);
-
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-        popupWindow.setElevation(30);
-
-        popupWindow.showAtLocation(findViewById(R.id.bottom_navigation), Gravity.CENTER, 0, 0);
-        PopupHandler.dimBehind(popupWindow);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
-        Button exitBtn = popupView.findViewById(R.id.exitBtn);
-        exitBtn.setOnClickListener(v -> {
-            popupWindow.dismiss();
-            finish();
-        });
-
-        Button logoutBtn = popupView.findViewById(R.id.logoutBtn);
-        logoutBtn.setOnClickListener(v -> {
-            popupWindow.dismiss();
-            startActivity(intent);
-            finish();
-        });
-    }
 }
 

@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.example.androidrecycle.user.home.HomeFragment"
+        android:id="@+id/UserFragmentContainerView"
+        android:name="com.example.androidrecycle.user.home.UserHomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="93dp"
         android:layout_marginTop="100dp"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_user_home" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -28,7 +28,7 @@
         app:menu="@menu/nav_bar_user" />
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topToolbar"
+        android:id="@+id/userToolbar"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="?attr/colorPrimary"
@@ -37,7 +37,7 @@
         android:textAlignment="viewStart">
 
         <TextView
-            android:id="@+id/toolbarTitleTxt"
+            android:id="@+id/userToolbarTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="bottom"
