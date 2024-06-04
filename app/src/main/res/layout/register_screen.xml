@@ -23,7 +23,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/password2Txt"
+        android:id="@+id/enterTxt"
         android:layout_width="244dp"
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="@string/enter_password"
-        app:layout_constraintBottom_toTopOf="@+id/password2Txt"
-        app:layout_constraintStart_toStartOf="@+id/password2Txt" />
+        app:layout_constraintBottom_toTopOf="@+id/enterTxt"
+        app:layout_constraintStart_toStartOf="@+id/enterTxt" />
 
     <TextView
         android:id="@+id/reEnterPswdLightTxt"
@@ -65,22 +65,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="@string/reenter_password"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
+        app:layout_constraintBottom_toTopOf="@+id/confirmTxt"
+        app:layout_constraintStart_toStartOf="@+id/confirmTxt" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/confirmTxt"
         android:layout_width="244dp"
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Re-enter password"
+        android:hint="Confirm password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password2Txt" />
+        app:layout_constraintTop_toBottomOf="@+id/enterTxt" />
 
     <Button
         android:id="@+id/cancelLightBtn"
@@ -88,8 +88,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/cancel"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintStart_toStartOf="@+id/confirmTxt"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTxt" />
 
     <Button
         android:id="@+id/registerCheckBtn"
@@ -98,7 +98,20 @@
         android:layout_marginTop="50dp"
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="@+id/cancelLightBtn"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/confirmTxt"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTxt" />
+
+    <TextView
+        android:id="@+id/errorTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="4dp"
+        android:text="passwords don't match"
+        android:textColor="#D32F2F"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/enterTxt"
+        app:layout_constraintStart_toEndOf="@+id/enterPswdLightTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

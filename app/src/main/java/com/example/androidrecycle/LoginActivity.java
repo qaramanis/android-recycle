@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_screen);
 
         usernameTextView = findViewById(R.id.usernameTxt);
-        passwordTextView = findViewById(R.id.password2Txt);
+        passwordTextView = findViewById(R.id.enterTxt);
         loginBtn = findViewById(R.id.loginBtn);
 
         TextView hereTxt = findViewById(R.id.hereBacklinkTxt);
