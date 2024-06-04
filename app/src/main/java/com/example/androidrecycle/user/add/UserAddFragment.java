@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class UserAddFragment extends Fragment{
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -24,16 +23,27 @@ public class UserAddFragment extends Fragment{
         TabLayout tabLayout = view.findViewById(R.id.tabs);
         ViewPager2 viewPager2 = view.findViewById(R.id.viewPager);
 
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(requireActivity());
-//        adapter.addFragment(new PaperFragment(), "Paper");
-//        adapter.addFragment(new GlassFragment(), "Glass");
-//        adapter.addFragment(new AluminumFragment(), "Aluminum");
-//        adapter.addFragment(new OtherFragment(), "Other");
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
 
 
-        viewPager2.setAdapter(new com.example.androidrecycle.user.add.ViewPagerAdapter(requireActivity()));
+        viewPager2.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2,
-                (tab, position) -> tab.setText("Item " + (position + 1))
+            (tab, position) -> {
+                switch (position){
+                    case 1:
+                        tab.setText("Glass");
+                        break;
+                    case 2:
+                        tab.setText("Aluminum");
+                        break;
+                    case 3:
+                        tab.setText("Other");
+                        break;
+                    default:
+                        tab.setText("Paper");
+                        break;
+                }
+            }
         ).attach();
         return  view;
     }
