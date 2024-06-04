@@ -6,7 +6,7 @@
     <string name="password_txt">Password</string>
     <string name="empty_string"> </string>
     <string name="login">Login</string>
-    <string name="wrong_credentials">Your Username and Password do not match\nYou can try again or register below</string>
+    <string name="wrong_credentials">Your Username and Password don\'t match\nTry again or register</string>
     <string name="retry">Try Again</string>
     <string name="register">Register</string>
     <string name="enter_username">Enter you desired username:</string>

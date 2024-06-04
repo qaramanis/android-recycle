@@ -36,7 +36,7 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.user_activity);
+        setContentView(R.layout.activity_user_main);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
