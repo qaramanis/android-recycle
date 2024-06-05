@@ -1,11 +1,23 @@
 package com.example.androidrecycle.admin.requests;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.androidrecycle.PopupHandler;
+import com.example.androidrecycle.R;
 
 import java.util.List;
 import java.util.Map;
@@ -39,7 +51,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         final String expandedListText = (String) getChild(listPosition, expandedListPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    .getSystemService(LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(android.R.layout.simple_list_item_2, null);
         }
         TextView expandedListText1 = (TextView) convertView
@@ -48,13 +60,13 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(android.R.id.text2);
         expandedListText1.setText(expandedListText);
         expandedListText2.setText("extra");
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO add popup with extra details
+                showRequestPopup();
             }
         });
-
         return convertView;
     }
 
@@ -85,7 +97,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         String listTitle = (String) getGroup(listPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    .getSystemService(LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
         }
         TextView listTitleTextView = (TextView) convertView
@@ -93,6 +105,8 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         listTitleTextView.setText(listTitle);
         return convertView;
     }
+
+
 
     @Override
     public boolean hasStableIds() {
@@ -102,5 +116,33 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int listPosition, int expandedListPosition) {
         return true;
+    }
+
+    public void showRequestPopup(){
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View  popupView = inflater.inflate(R.layout.popup_request_info, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.setElevation(30);
+
+        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+        PopupHandler.dimBehind(popupWindow);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        Button acceptBtn = popupView.findViewById(R.id.acceptBtn);
+        acceptBtn.setOnClickListener(v ->{
+            popupWindow.dismiss();
+            //TODO move to completed
+        });
     }
 }
