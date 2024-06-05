@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         intent = new Intent(LoginActivity.this, RegisterActivity.class);
         hereTxt.setOnClickListener(v -> startActivity(intent));
 
-        int credentials = 0; //0 for user, 1 for admin, 2 for wrong
+        int credentials = 1; //0 for user, 1 for admin, 2 for wrong
         loginBtn.setOnClickListener(v -> {
             //TODO add function that checks credentials from a database
             if(credentials==0){
