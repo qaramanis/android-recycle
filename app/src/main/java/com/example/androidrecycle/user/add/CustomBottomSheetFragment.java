@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,26 +22,18 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
 
         TextView paperText = view.findViewById(R.id.paperCheck);
-        paperText.setText("Kgs of paper");
+        paperText.setText("Kgs of paper: -");
         TextView glassText = view.findViewById(R.id.glassCheck);
-        glassText.setText("Glass bottles");
+        glassText.setText("Glass bottles: -");
         TextView aluminumText = view.findViewById(R.id.aluminumCheck);
-        paperText.setText("Number of cans");
+        aluminumText.setText("Number of cans: - ");
 
-        paperText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle item1 click
-                dismiss();
-            }
+        Button confirm = view.findViewById(R.id.confirmButton);
+        confirm.setOnClickListener(v -> {
+            //TODO calculate points as well
+           dismiss();
         });
-        glassText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle item2 click
-                dismiss();
-            }
-        });
+
         return view;
     }
 }
