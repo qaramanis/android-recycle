@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.androidrecycle.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -25,6 +27,11 @@ public class UserAddFragment extends Fragment{
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
 
+        Button checkBtn = view.findViewById(R.id.floatingActionButton);
+        checkBtn.setOnClickListener(v -> {
+            CustomBottomSheetFragment sheet = new CustomBottomSheetFragment();
+            sheet.show(getParentFragmentManager(),sheet.getTag());
+        });
 
         viewPager2.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2,
@@ -35,9 +42,6 @@ public class UserAddFragment extends Fragment{
                         break;
                     case 2:
                         tab.setText("Aluminum");
-                        break;
-                    case 3:
-                        tab.setText("Other");
                         break;
                     default:
                         tab.setText("Paper");
