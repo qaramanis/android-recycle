@@ -33,11 +33,18 @@ public class UserMapFragment extends Fragment implements OnMapReadyCallback{
 
     //TODO fix markers
     public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-33.852, 151.211);
+        LatLng nea_smyrni = new LatLng(37.948307, 23.714685);
         googleMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                .position(nea_smyrni)
+                .title("Peiraias"));
+
+        LatLng peiraias = new LatLng(37.943308, 23.648676);
+        googleMap.addMarker(new MarkerOptions()
+                .position(peiraias)
+                .title("Peiraias"));
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(nea_smyrni));
+
     }
 
 }
