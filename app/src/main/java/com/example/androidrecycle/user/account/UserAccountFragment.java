@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
 import com.example.androidrecycle.RegisterActivity;
 import com.example.androidrecycle.CustomListAdapter;
+import com.example.androidrecycle.user.User;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +38,9 @@ public class UserAccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_account, container, false);
+        User currUser = User.getInstance();
+        TextView name = view.findViewById(R.id.nameTxt);
+        name.setText(currUser.getUsername());
 
         ImageView imageView = view.findViewById(R.id.imageView);
         imageView.setImageResource(R.drawable.ic_account);
