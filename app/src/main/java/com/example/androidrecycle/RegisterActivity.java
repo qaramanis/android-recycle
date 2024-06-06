@@ -4,6 +4,7 @@ package com.example.androidrecycle;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,6 +22,11 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.androidrecycle.user.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private Intent intent;
@@ -31,6 +37,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.register_screen);
@@ -53,14 +64,14 @@ public class RegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPs)) {
                     textViewError.setText("Please fill out both fields");
                     textViewError.setVisibility(View.VISIBLE);
-                    credentials = 3;
+//                    credentials = 3;
                 } else if (!password.equals(confirmPs)) {
                     textViewError.setText("Passwords do not match");
                     textViewError.setVisibility(View.VISIBLE);
-                    credentials = 3;
+//                    credentials = 3;
                 } else {
                     textViewError.setVisibility(View.GONE);
-                    credentials = 0;
+//                    credentials = 0;
                 }
             }
 
@@ -76,11 +87,44 @@ public class RegisterActivity extends AppCompatActivity {
         //0 for user, 1 for taken username, else password error
         Button registerCheck = findViewById(R.id.registerCheckBtn);
         registerCheck.setOnClickListener(v -> {
+            String password = enterPassword.getText().toString();
+            String username = ((EditText) findViewById(R.id.usernameTxt)).getText().toString();
+            JSONObject userResponse = null;
+            User currUser = null;
+
+            try {
+                OkHttpHandler okHttpHandler = new OkHttpHandler();
+                userResponse = okHttpHandler.register(username, password, 0);
+                System.out.println("Response: " + userResponse);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if(userResponse == null){
+                Toast.makeText(RegisterActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                boolean succsess = Boolean.parseBoolean(userResponse.getString("success"));
+                if(!succsess){
+                    return;
+                }else{
+                    JSONObject userData = userResponse.getJSONObject("user");
+                    int id = Integer.parseInt(userData.getString("id"));
+                    String username1 = userData.getString("username");
+                    int role = Integer.parseInt(userData.getString("role"));
+                    currUser = User.getInstance(id, username1, role);
+                }
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
             //TODO check credentials from database
-            if(credentials==0){
+            if(currUser.getRole()==0){
                 intent = new Intent(RegisterActivity.this, UserMainActivity.class);
                 showRegisteredPopup(v, intent);
-            } else if (credentials==2) {
+            } else if (currUser.getRole()==2) {
                 showErrorPopup(v);
             } else Toast.makeText(this,"Check password input", Toast.LENGTH_SHORT).show();
 
