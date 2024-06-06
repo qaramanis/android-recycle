@@ -2,6 +2,7 @@ package com.example.androidrecycle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,9 +12,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.androidrecycle.user.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +31,11 @@ public class LoginActivity extends AppCompatActivity {
     //User loginUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.login_screen);
@@ -36,14 +48,63 @@ public class LoginActivity extends AppCompatActivity {
         intent = new Intent(LoginActivity.this, RegisterActivity.class);
         hereTxt.setOnClickListener(v -> startActivity(intent));
 
-        int credentials = 0; //0 for user, 1 for admin, 2 for wrong
+
+
+
+//        int credentials = 1; //0 for user, 1 for admin, 2 for wrong
         loginBtn.setOnClickListener(v -> {
+            String usernameText = usernameTextView.getText().toString();
+            String password = passwordTextView.getText().toString();
+            JSONObject userResponse = null;
+            User currUser = null;
+
+
+            if(usernameText.isEmpty() || password.isEmpty()){
+                showWrongCredentialsPopup(v);
+                return;
+            }
+
+
+
+
+            try {
+                OkHttpHandler okHttpHandler = new OkHttpHandler();
+                userResponse = okHttpHandler.login(usernameText, password);
+                System.out.println("Response: " + userResponse);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if(userResponse == null){
+                Toast.makeText(LoginActivity.this, "Server is not responding", Toast.LENGTH_SHORT).show();
+                System.out.println("Username: " + usernameText + " Password: " + password);
+                return;
+            }
+
+            try {
+                boolean succsess = Boolean.parseBoolean(userResponse.getString("success"));
+                if(!succsess){
+                    showWrongCredentialsPopup(v);
+                    return;
+                }else{
+                    JSONObject userData = userResponse.getJSONObject("user");
+                    int id = Integer.parseInt(userData.getString("id"));
+                    String username = userData.getString("username");
+                    int role = Integer.parseInt(userData.getString("role"));
+                    currUser = User.getInstance(id, username, role);
+                }
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+
             //TODO add function that checks credentials from a database
-            if(credentials==0){
+            if(currUser.getRole() == 0){
                 intent.setClass(LoginActivity.this, UserMainActivity.class);
                 startActivity(intent);
                 finish();
-            }else if (credentials==1){
+            }else if (currUser.getRole()==1){
                 intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                 startActivity(intent);
                 finish();
