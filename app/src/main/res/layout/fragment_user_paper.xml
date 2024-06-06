@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_user_paper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".user.add.PaperFragment"
@@ -16,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Enter quanity in kg"
+            android:text="Enter quantity in kg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,16 +30,16 @@
             android:text="1kg = 10 points"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textIsSelectable="false"
-            app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+            app:layout_constraintEnd_toEndOf="@+id/editAluminumAmount"
+            app:layout_constraintTop_toBottomOf="@+id/editAluminumAmount" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/editAluminumAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Paper"
             android:ems="10"
+            android:hint="Amount"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

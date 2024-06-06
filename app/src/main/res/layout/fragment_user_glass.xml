@@ -28,18 +28,19 @@
             android:text="1 bottle = 10 points"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textIsSelectable="false"
-            app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+            app:layout_constraintEnd_toEndOf="@+id/editGlassAmount"
+            app:layout_constraintTop_toBottomOf="@+id/editGlassAmount" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/editGlassAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Amount"
+            android:layout_marginTop="12dp"
             android:ems="10"
+            android:hint="Amount"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:ignore="TouchTargetSizeCheck" />

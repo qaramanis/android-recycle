@@ -46,17 +46,15 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
         getOnBackPressedDispatcher().addCallback(this, callback);
 
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.user_bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.user_home);
     }
 
     public void switchFragment(int itemId) {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.user_bottom_navigation);
         bottomNavigationView.setSelectedItemId(itemId);
     }
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -104,7 +102,7 @@ public class UserMainActivity extends AppCompatActivity implements FragmentSwitc
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.setElevation(30);
 
-        popupWindow.showAtLocation(findViewById(R.id.bottom_navigation), Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(findViewById(R.id.user_bottom_navigation), Gravity.CENTER, 0, 0);
         PopupHandler.dimBehind(popupWindow);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {

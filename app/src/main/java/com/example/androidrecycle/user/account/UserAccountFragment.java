@@ -41,26 +41,18 @@ public class UserAccountFragment extends Fragment {
         imageView.setImageResource(R.drawable.ic_account);
 
         ListView listView = view.findViewById(R.id.account_list);
-        List<String> itemList = Arrays.asList("Rewards History","Change Password", "Logout");
+        List<String> itemList = Arrays.asList("Rewards History", "Logout");
 
         CustomListAdapter adapter = new CustomListAdapter(requireContext(), itemList);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = itemList.get(position);
-                switch (selectedItem){
-                    case "Rewards History":
-                        break;
-                    case "Change Password":
-                        Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                        startActivity(intent);
-                        break;
-                    case "Logout":
-                        showLogoutPopup(view);
-                        break;
-                }
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            String selectedItem = itemList.get(position);
+            switch (selectedItem){
+                case "Rewards History":
+                    break;
+                case "Logout":
+                    showLogoutPopup(view1);
+                    break;
             }
         });
 

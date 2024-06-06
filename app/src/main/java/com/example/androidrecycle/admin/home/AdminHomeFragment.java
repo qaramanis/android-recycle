@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.androidrecycle.CustomListAdapter;
 import com.example.androidrecycle.R;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public class AdminHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
         ListView listView = view.findViewById(R.id.topRecList);
         List<String> itemList = new ArrayList<>();
+
+        CustomListAdapter adapter = new CustomListAdapter(requireContext(), itemList);
+        listView.setAdapter(adapter);
+
         //TODO populate list with top contributor descending according to points
         return view;
     }

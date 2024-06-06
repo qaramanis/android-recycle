@@ -27,11 +27,11 @@
         android:text="10 cans = 5 points"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textIsSelectable="false"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/editAluminumAmount"
+        app:layout_constraintTop_toBottomOf="@+id/editAluminumAmount" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/editAluminumAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.okhttp)
+    implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.viewpager2)
     implementation(libs.glide)
     implementation(libs.activity.v160alpha05)

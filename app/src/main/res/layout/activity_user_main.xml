@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".UserMainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/UserFragmentContainerView"
@@ -15,13 +16,14 @@
         tools:layout="@layout/fragment_user_home" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/user_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="93dp"
         android:layout_gravity="bottom|center"
         android:elevation="8dp"
         android:paddingBottom="5dp"
         app:itemIconSize="24dp"
+        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

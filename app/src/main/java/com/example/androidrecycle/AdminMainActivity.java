@@ -41,9 +41,9 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationBa
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.admin_bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
-
+        bottomNavigationView.setSelectedItemId(R.id.admin_home);
     }
 
     @Override
