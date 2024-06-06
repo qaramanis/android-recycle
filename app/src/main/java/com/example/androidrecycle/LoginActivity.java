@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
 //        int credentials = 1; //0 for user, 1 for admin, 2 for wrong
         loginBtn.setOnClickListener(v -> {
             String usernameText = usernameTextView.getText().toString();
