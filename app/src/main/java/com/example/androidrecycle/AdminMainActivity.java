@@ -43,7 +43,6 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationBa
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.admin_home);
 
     }
 

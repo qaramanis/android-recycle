@@ -1,16 +1,27 @@
 package com.example.androidrecycle.user.rewards;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidrecycle.LoginActivity;
+import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
+import com.example.androidrecycle.RegisterActivity;
 import com.google.android.material.carousel.CarouselLayoutManager;
 
 import java.util.Arrays;
@@ -51,7 +62,41 @@ public class UserRewardsFragment extends Fragment implements com.example.android
     @Override
     public void onItemClick(int position) {
         int clickedImageRes = imageList.get(position);
-        //TODO add popup to confirm request for reward
-        Toast.makeText(requireContext(), "Clicked item at position: " + position, Toast.LENGTH_SHORT).show();
+        showRewardsPopup(getView());
+    }
+
+    public void showRewardsPopup(View view){
+
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_rewards_light, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.setElevation(30);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        PopupHandler.dimBehind(popupWindow);
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        Button tryAgainBtn = popupView.findViewById(R.id.redeemBtn);
+        tryAgainBtn.setOnClickListener(v -> {
+            popupWindow.dismiss();
+            Toast.makeText(requireContext(), "Request sent to admin.\nWaiting for approval", Toast.LENGTH_SHORT).show();
+            //TODO backend missing
+            }
+        );
+
+        Button registerButton = popupView.findViewById(R.id.redeemCancelBtn);
+        registerButton.setOnClickListener(v -> {
+            popupWindow.dismiss();
+        });
     }
 }
