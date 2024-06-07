@@ -1,4 +1,6 @@
-package com.example.androidrecycle.user;
+package com.example.androidrecycle;
+
+import androidx.lifecycle.ViewModelProvider;
 
 public class User {
 
@@ -6,16 +8,18 @@ public class User {
     private int id;
     private String username;
     private int role;
+    private int points;
 
-    private User(int id, String username, int role){
+    private User(int id, String username, int role, int points){
         this.id = id;
         this.username = username;
         this.role = role;
+        this.points = points;
     }
 
-    public static synchronized User getInstance(int id, String username, int role){
+    public static synchronized User getInstance(int id, String username, int role, int points){
         if (single_instance == null)
-            single_instance = new User(id, username, role);
+            single_instance = new User(id, username, role, points);
         return single_instance;
     }
 
@@ -36,4 +40,9 @@ public class User {
     public int getRole() {
         return role;
     }
+
+    public int getPoints(){return points;}
+
+    public void setPoints(int points){this.points += points; }
+
 }

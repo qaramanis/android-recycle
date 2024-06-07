@@ -3,7 +3,6 @@ package com.example.androidrecycle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,8 +15,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.androidrecycle.user.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,14 +61,10 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-
-
-
             try {
                 OkHttpHandler okHttpHandler = new OkHttpHandler();
                 userResponse = okHttpHandler.login(usernameText, password);
                 System.out.println("Response: " + userResponse);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -83,8 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             try {
-                boolean succsess = Boolean.parseBoolean(userResponse.getString("success"));
-                if(!succsess){
+                boolean success = Boolean.parseBoolean(userResponse.getString("success"));
+                if(!success){
                     showWrongCredentialsPopup(v);
                     return;
                 }else{
@@ -92,14 +85,13 @@ public class LoginActivity extends AppCompatActivity {
                     int id = Integer.parseInt(userData.getString("id"));
                     String username = userData.getString("username");
                     int role = Integer.parseInt(userData.getString("role"));
-                    currUser = User.getInstance(id, username, role);
+                    int currPoints = Integer.parseInt(userData.getString("currentPoints"));
+                    currUser = User.getInstance(id, username, role, currPoints);
                 }
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
 
-
-            //TODO add function that checks credentials from a database
             if(currUser.getRole() == 0){
                 intent.setClass(LoginActivity.this, UserMainActivity.class);
                 startActivity(intent);

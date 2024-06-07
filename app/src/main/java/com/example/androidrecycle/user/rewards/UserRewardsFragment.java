@@ -22,6 +22,7 @@ import com.example.androidrecycle.LoginActivity;
 import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
 import com.example.androidrecycle.RegisterActivity;
+import com.example.androidrecycle.User;
 import com.google.android.material.carousel.CarouselLayoutManager;
 
 import java.util.Arrays;
@@ -62,10 +63,14 @@ public class UserRewardsFragment extends Fragment implements com.example.android
     @Override
     public void onItemClick(int position) {
         int clickedImageRes = imageList.get(position);
-        showRewardsPopup(getView());
+        if (User.getInstance().getPoints() >=100){
+            showAvailableRewardsPopup(getView());
+        }else{
+            showNotEnoughPointsPopup(getView());
+        }
     }
 
-    public void showRewardsPopup(View view){
+    public void showAvailableRewardsPopup(View view){
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_rewards_light, null);
@@ -86,16 +91,43 @@ public class UserRewardsFragment extends Fragment implements com.example.android
             }
         });
 
-        Button tryAgainBtn = popupView.findViewById(R.id.redeemBtn);
-        tryAgainBtn.setOnClickListener(v -> {
+        Button redeemBtn = popupView.findViewById(R.id.redeemBtn);
+        redeemBtn.setOnClickListener(v -> {
             popupWindow.dismiss();
             Toast.makeText(requireContext(), "Request sent to admin.\nWaiting for approval", Toast.LENGTH_SHORT).show();
+            User.getInstance().setPoints(-100);
             //TODO backend missing
             }
         );
 
-        Button registerButton = popupView.findViewById(R.id.redeemCancelBtn);
-        registerButton.setOnClickListener(v -> {
+        Button canelBtn = popupView.findViewById(R.id.redeemCancelBtn);
+        canelBtn.setOnClickListener(v -> {
+            popupWindow.dismiss();
+        });
+    }
+    public void showNotEnoughPointsPopup(View view) {
+
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_not_enough_points_light, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.setElevation(30);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        PopupHandler.dimBehind(popupWindow);
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        Button okBtn = popupView.findViewById(R.id.okBtn);
+        okBtn.setOnClickListener(v -> {
             popupWindow.dismiss();
         });
     }

@@ -1,5 +1,7 @@
 package com.example.androidrecycle.user.home;
 
+import com.example.androidrecycle.OkHttpHandler;
+import com.example.androidrecycle.User;
 import com.example.androidrecycle.user.add.*;
 
 import android.annotation.SuppressLint;
@@ -16,11 +18,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidrecycle.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class UserHomeFragment extends Fragment{
 
-    int points = 30;
+    int currPoints = 30;
     Integer totalPoints = 0;
-    int paperPoints = 0, glassPoints = 0, aluminumPoints = 0, otherPoints = 0;
+    int paperPoints, glassPoints, aluminumPoints;
     private FragmentSwitcher fragmentSwitcher;
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
@@ -28,17 +33,37 @@ public class UserHomeFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
 
-        totalPoints = paperPoints + glassPoints + aluminumPoints + otherPoints;
-
         ProgressBar progressBar = view.findViewById(R.id.progressBar);
         TextView progressText = view.findViewById(R.id.progress_text);
 
-        progressText.setText(String.format("%d/100", points));
-        progressBar.setProgress(points);
+        currPoints = User.getInstance().getPoints();
+        progressText.setText(String.format("%d/100", currPoints));
+        progressBar.setProgress(currPoints);
+
+        JSONObject userResponse = null;
+        User currUser = User.getInstance();
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            userResponse = okHttpHandler.getMyPointsHistory(currUser.getId());
+            System.out.println("Response: " + userResponse);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject userData = userResponse.getJSONObject("pointsHistory");
+            paperPoints = Integer.parseInt(userData.getString("paper"));
+            glassPoints = Integer.parseInt(userData.getString("glass"));
+            aluminumPoints = Integer.parseInt(userData.getString("aluminum"));
+            totalPoints =  paperPoints + glassPoints + aluminumPoints;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
 
         TextView availableText = view.findViewById(R.id.avaialbleTxt);
-        if(points>=100)
+        if(currPoints>=100)
             availableText.setText("Rewards are available");
         else
             availableText.setVisibility(View.GONE);

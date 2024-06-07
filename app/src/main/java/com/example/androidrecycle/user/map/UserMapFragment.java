@@ -38,12 +38,36 @@ public class UserMapFragment extends Fragment implements OnMapReadyCallback{
                 .position(nea_smyrni)
                 .title("Peiraias"));
 
-        LatLng peiraias = new LatLng(37.943308, 23.648676);
+        LatLng peiraias = new LatLng(40.633380, 22.946208);
         googleMap.addMarker(new MarkerOptions()
                 .position(peiraias)
                 .title("Peiraias"));
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(nea_smyrni));
+        LatLng agias_sofias = new LatLng(37.943308, 23.648676);
+        googleMap.addMarker(new MarkerOptions()
+                .position(agias_sofias)
+                .title("Agias Sofias"));
+
+        LatLng aristotelous = new LatLng(40.632773, 22.940978);
+        googleMap.addMarker(new MarkerOptions()
+                .position(aristotelous)
+                .title("Aristotelous"));
+
+        LatLng deth = new LatLng(40.626973, 22.953769);
+        googleMap.addMarker(new MarkerOptions()
+                .position(deth)
+                .title("Deth"));
+
+        LatLng pamak = new LatLng(40.625438, 22.960464);
+        googleMap.addMarker(new MarkerOptions()
+                .position(pamak)
+                .title("Panephsthmio Makedonias"));
+
+
+
+
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(5));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(nea_smyrni));
 
     }
 

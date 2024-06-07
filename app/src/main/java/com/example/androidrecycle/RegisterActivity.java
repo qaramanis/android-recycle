@@ -22,8 +22,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.androidrecycle.user.User;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,14 +62,11 @@ public class RegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPs)) {
                     textViewError.setText("Please fill out both fields");
                     textViewError.setVisibility(View.VISIBLE);
-//                    credentials = 3;
                 } else if (!password.equals(confirmPs)) {
                     textViewError.setText("Passwords do not match");
                     textViewError.setVisibility(View.VISIBLE);
-//                    credentials = 3;
                 } else {
                     textViewError.setVisibility(View.GONE);
-//                    credentials = 0;
                 }
             }
 
@@ -115,7 +110,8 @@ public class RegisterActivity extends AppCompatActivity {
                     int id = Integer.parseInt(userData.getString("id"));
                     String username1 = userData.getString("username");
                     int role = Integer.parseInt(userData.getString("role"));
-                    currUser = User.getInstance(id, username1, role);
+                    int currPoints = Integer.parseInt(userData.getString("currentPoints"));
+                    currUser = User.getInstance(id, username1, role, currPoints);
                 }
             } catch (JSONException e) {
                 throw new RuntimeException(e);

@@ -4,26 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.home.AdminHomeFragment"
-    tools:ignore="HardcodedText">
-
+    android:background="@drawable/popup_menu_background_light">
 
     <TextView
-        android:id="@+id/topRecTxt"
+        android:id="@+id/enoughTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Top Recyclers:"
-        android:textStyle="bold"
+        android:layout_margin="15dp"
+        android:text="You don't have enough points"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/topRecList"
-        android:layout_width="409dp"
-        android:layout_height="694dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/okBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="OK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topRecTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/enoughTxt" />
 </androidx.constraintlayout.widget.ConstraintLayout>

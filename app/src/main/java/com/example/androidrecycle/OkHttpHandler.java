@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class OkHttpHandler {
-    private static final String BASE_URL = "http://192.168.56.1/recycleService/";
+    private static final String BASE_URL = "http://192.168.1.198/recycleService/";
     private final OkHttpClient client = new OkHttpClient();
 
     private JSONObject postRequest(String url, RequestBody body) throws IOException, JSONException {
@@ -55,7 +55,15 @@ public class OkHttpHandler {
                 .add("glass", String.valueOf(glass))
                 .add("aluminum", String.valueOf(aluminum))
                 .build();
-        return postRequest(BASE_URL + "addPoints.php", body);
+        return postRequest(BASE_URL + "getMyPointsHistory.php", body);
+    }
+
+    public JSONObject subtractPoints(int userId, int pointsToSubtract) throws IOException, JSONException {
+        RequestBody body = new FormBody.Builder()
+                .add("userId", String.valueOf(userId))
+                .add("pointsToSubtract", String.valueOf(pointsToSubtract))
+                .build();
+        return postRequest(BASE_URL + "subtractPoints.php", body);
     }
 
     public JSONObject approveRejectRequest(int requestId, boolean approve) throws IOException, JSONException {
@@ -95,6 +103,29 @@ public class OkHttpHandler {
                 .add("userId", String.valueOf(userId))
                 .build();
         return postRequest(BASE_URL + "makeRequest.php", body);
+    }
+
+    public JSONObject getMyPointsHistory(int userId) throws IOException, JSONException {
+        RequestBody body = new FormBody.Builder()
+                .add("userId", String.valueOf(userId))
+                .build();
+        return postRequest(BASE_URL + "getMyPointsHistory.php", body);
+    }
+
+    public JSONObject getTopRecyclers() throws IOException {
+        Request request = new Request.Builder()
+                .url(BASE_URL + "getTopRecyclers.php")
+                .get()
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
+            return new JSONObject(response.body().string());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public JSONObject getAllUsers() throws IOException {

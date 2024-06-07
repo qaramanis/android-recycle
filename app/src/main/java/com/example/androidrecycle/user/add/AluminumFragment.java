@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.androidrecycle.R;
+import com.example.androidrecycle.SharedViewModel;
 
 public class AluminumFragment extends Fragment {
 

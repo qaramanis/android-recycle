@@ -14,8 +14,14 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.androidrecycle.LoginActivity;
+import com.example.androidrecycle.OkHttpHandler;
 import com.example.androidrecycle.R;
+import com.example.androidrecycle.SharedViewModel;
+import com.example.androidrecycle.User;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import org.json.JSONObject;
 
 
 public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
@@ -28,8 +34,6 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
     Integer paperAmount;
     Integer glassAmount;
     Integer aluminumAmount;
-
-    EditText paperEdit;
 
     @Nullable
     @Override
@@ -94,24 +98,28 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
 
         Button confirm = view.findViewById(R.id.confirmButton);
         confirm.setOnClickListener(v -> {
-            float paperPoints = 0;
+
+
+
+            int paperPoints = 0;
             if (paperAmount != null) {
-                paperPoints = (float) (double) (paperAmount * 10);
-                sharedViewModel.updatePoints(0, (int) paperPoints);
+                paperPoints = paperAmount *  10;
+                sharedViewModel.updatePoints(0,paperPoints);
             }
-            float glassPoints = 0;
+            int glassPoints = 0;
             if(glassAmount != null){
-                glassPoints = (float) (double) (glassAmount * 10);
-                sharedViewModel.updatePoints(1, (int) glassPoints);
+                glassPoints = (glassAmount * 10);
+                sharedViewModel.updatePoints(1,glassPoints);
             }
 
-            float aluminumPoints = 0;
+            int aluminumPoints = 0;
             if(aluminumAmount != null){
-                aluminumPoints = (float) (double) (aluminumAmount / 2);
-                sharedViewModel.updatePoints(2, (int) aluminumPoints);
+                aluminumPoints = aluminumAmount / 2;
+                sharedViewModel.updatePoints(2,aluminumPoints);
             }
-            float totalPoints = paperPoints + glassPoints + aluminumPoints ;
-            sharedViewModel.updatePoints(3, (int) totalPoints);
+            int totalPoints = (paperPoints + glassPoints + aluminumPoints);
+            User.getInstance().setPoints(totalPoints);
+            sharedViewModel.updatePoints(3,totalPoints);
             Toast.makeText(getContext(), "Total points: " + totalPoints, Toast.LENGTH_SHORT).show();
 
             paperText.setText("Kgs of paper: -");
@@ -119,7 +127,17 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
             aluminumText.setText("Number of cans: - ");
 
             sharedViewModel.setEditTextValue(null);
-            //TODO show points in home screen
+
+            JSONObject userResponse = null;
+
+            try {
+                OkHttpHandler okHttpHandler = new OkHttpHandler();
+                userResponse = okHttpHandler.addPoints(User.getInstance().getId(), 1, 2, 3);
+                System.out.println("Response: " + userResponse);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             dismiss();
         });
 
