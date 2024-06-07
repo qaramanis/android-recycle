@@ -38,7 +38,7 @@ public class AluminumFragment extends Fragment {
                 sharedViewModel.setAluminumAmountString(text);
                 try {
                     int value = Integer.parseInt(text);
-                    sharedViewModel.setPaperAmountInteger(value);
+                    sharedViewModel.setAluminumAmountInteger(value);
                 } catch (NumberFormatException e) {
                     sharedViewModel.setAluminumAmountInteger(0);
                 }

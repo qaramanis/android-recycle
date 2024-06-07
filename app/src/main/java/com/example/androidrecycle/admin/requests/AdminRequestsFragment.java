@@ -1,20 +1,13 @@
 package com.example.androidrecycle.admin.requests;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 
 import com.example.androidrecycle.R;
 
@@ -26,7 +19,7 @@ import java.util.Map;
 public class AdminRequestsFragment extends Fragment {
 
     ExpandableListView expandableListView;
-    CustomExpandableListAdapter expandableListAdapter;
+    RequestsExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
     Map<String, List<String>> expandableListDetail;
 
@@ -38,7 +31,7 @@ public class AdminRequestsFragment extends Fragment {
         expandableListView = view.findViewById(R.id.pendingExpandable);
         expandableListDetail = getData();
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(requireContext(), expandableListTitle, expandableListDetail);
+        expandableListAdapter = new RequestsExpandableListAdapter(requireContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
         return view;

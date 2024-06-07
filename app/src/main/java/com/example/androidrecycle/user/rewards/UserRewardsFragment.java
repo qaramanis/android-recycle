@@ -19,37 +19,38 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidrecycle.LoginActivity;
+import com.example.androidrecycle.OkHttpHandler;
 import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
 import com.example.androidrecycle.RegisterActivity;
 import com.example.androidrecycle.User;
 import com.google.android.material.carousel.CarouselLayoutManager;
 
+import org.json.JSONObject;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class UserRewardsFragment extends Fragment implements com.example.androidrecycle.ui.rewards.CarouselAdapter.OnItemClickListener{
 
-    private List<Integer> imageList;
+    private final List<Integer> imageList = Arrays.asList(
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image,
+            R.drawable.ic_image
+    );;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_rewards, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
-
-        imageList = Arrays.asList(
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image,
-                R.drawable.ic_image
-                );
 
         com.example.androidrecycle.ui.rewards.CarouselAdapter adapter = new com.example.androidrecycle.ui.rewards.CarouselAdapter(requireContext(), imageList);
         adapter.setOnItemClickListener(this);
@@ -64,13 +65,13 @@ public class UserRewardsFragment extends Fragment implements com.example.android
     public void onItemClick(int position) {
         int clickedImageRes = imageList.get(position);
         if (User.getInstance().getPoints() >=100){
-            showAvailableRewardsPopup(getView());
+            showAvailableRewardsPopup(getView(), position);
         }else{
             showNotEnoughPointsPopup(getView());
         }
     }
 
-    public void showAvailableRewardsPopup(View view){
+    public void showAvailableRewardsPopup(View view,int id){
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_rewards_light, null);
@@ -95,10 +96,25 @@ public class UserRewardsFragment extends Fragment implements com.example.android
         redeemBtn.setOnClickListener(v -> {
             popupWindow.dismiss();
             Toast.makeText(requireContext(), "Request sent to admin.\nWaiting for approval", Toast.LENGTH_SHORT).show();
-            User.getInstance().setPoints(-100);
-            //TODO backend missing
+            JSONObject userResponse = null ;
+            User currUser = User.getInstance();
+            try {
+                OkHttpHandler okHttpHandler = new OkHttpHandler();
+                userResponse = okHttpHandler.subtractPoints(currUser.getId(), 100);
+                currUser.setPoints(-100);
+                System.out.println("Response: " + userResponse);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        );
+            int rewardId = id;
+            try {
+                OkHttpHandler okHttpHandler = new OkHttpHandler();
+                userResponse = okHttpHandler.makeRequest(rewardId, currUser.getId());
+                System.out.println("Response: " + userResponse);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         Button canelBtn = popupView.findViewById(R.id.redeemCancelBtn);
         canelBtn.setOnClickListener(v -> {

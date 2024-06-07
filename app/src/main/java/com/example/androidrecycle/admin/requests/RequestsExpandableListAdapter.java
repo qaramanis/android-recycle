@@ -1,7 +1,6 @@
 package com.example.androidrecycle.admin.requests;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
@@ -22,12 +20,12 @@ import com.example.androidrecycle.R;
 import java.util.List;
 import java.util.Map;
 
-public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
+public class RequestsExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> expandableListTitle;
     private Map<String, List<String>> expandableListDetail;
 
-    public CustomExpandableListAdapter(Context context, List<String> expandableListTitle, Map<String, List<String>> expandableListDetail) {
+    public RequestsExpandableListAdapter(Context context, List<String> expandableListTitle, Map<String, List<String>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
@@ -54,9 +52,9 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                     .getSystemService(LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(android.R.layout.simple_list_item_2, null);
         }
-        TextView expandedListText1 = (TextView) convertView
+        TextView expandedListText1 = convertView
                 .findViewById(android.R.id.text1);
-        TextView expandedListText2 = (TextView) convertView
+        TextView expandedListText2 = convertView
                 .findViewById(android.R.id.text2);
         expandedListText1.setText(expandedListText);
         expandedListText2.setText("extra");
@@ -143,6 +141,15 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         acceptBtn.setOnClickListener(v ->{
             popupWindow.dismiss();
             //TODO move to completed
+        });
+
+        Button rejectBtn = popupView.findViewById(R.id.rejectBtn);
+        rejectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                //TODO move to rejected
+            }
         });
     }
 }

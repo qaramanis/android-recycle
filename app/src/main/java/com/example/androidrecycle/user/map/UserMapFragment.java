@@ -31,22 +31,21 @@ public class UserMapFragment extends Fragment implements OnMapReadyCallback{
         return inflater.inflate(R.layout.fragment_user_map, container, false);
     }
 
-    //TODO fix markers
     public void onMapReady(GoogleMap googleMap) {
         LatLng nea_smyrni = new LatLng(37.948307, 23.714685);
         googleMap.addMarker(new MarkerOptions()
                 .position(nea_smyrni)
-                .title("Peiraias"));
+                .title("Nea Smyrni"));
 
-        LatLng peiraias = new LatLng(40.633380, 22.946208);
+        LatLng agias_sofias = new LatLng(40.633380, 22.946208);
+        googleMap.addMarker(new MarkerOptions()
+                .position(agias_sofias)
+                .title("Agia Sofia"));
+
+        LatLng peiraias = new LatLng(37.943308, 23.648676);
         googleMap.addMarker(new MarkerOptions()
                 .position(peiraias)
                 .title("Peiraias"));
-
-        LatLng agias_sofias = new LatLng(37.943308, 23.648676);
-        googleMap.addMarker(new MarkerOptions()
-                .position(agias_sofias)
-                .title("Agias Sofias"));
 
         LatLng aristotelous = new LatLng(40.632773, 22.940978);
         googleMap.addMarker(new MarkerOptions()

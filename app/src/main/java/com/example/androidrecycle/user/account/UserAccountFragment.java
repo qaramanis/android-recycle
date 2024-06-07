@@ -25,6 +25,7 @@ import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
 import com.example.androidrecycle.CustomListAdapter;
 import com.example.androidrecycle.User;
+import com.example.androidrecycle.user.home.UserHomeFragment;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,12 +47,15 @@ public class UserAccountFragment extends Fragment {
         ListView listView = view.findViewById(R.id.account_list);
         List<String> itemList = Arrays.asList("Rewards History", "Logout");
 
+
         CustomListAdapter adapter = new CustomListAdapter(requireContext(), itemList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             String selectedItem = itemList.get(position);
             switch (selectedItem){
                 case "Rewards History":
+                    getParentFragmentManager().beginTransaction().replace(R.id.UserFragmentContainerView, RewardsHistoryFragment.class, null)
+                            .setReorderingAllowed(true).addToBackStack(null).commit();
                     break;
                 case "Logout":
                     showLogoutPopup(view1);
@@ -63,7 +67,6 @@ public class UserAccountFragment extends Fragment {
     }
 
     //TODO add actions on item clicked
-    //TODO add username and id implementation
 
     public void showLogoutPopup(View view){
 

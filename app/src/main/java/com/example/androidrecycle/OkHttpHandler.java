@@ -55,7 +55,7 @@ public class OkHttpHandler {
                 .add("glass", String.valueOf(glass))
                 .add("aluminum", String.valueOf(aluminum))
                 .build();
-        return postRequest(BASE_URL + "getMyPointsHistory.php", body);
+        return postRequest(BASE_URL + "addPoints.php", body);
     }
 
     public JSONObject subtractPoints(int userId, int pointsToSubtract) throws IOException, JSONException {

@@ -44,7 +44,7 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
 
 
         paperText = view.findViewById(R.id.paperCheck);
-        paperText.setText("Kgs of paper: -");
+        paperText.setText("Kgs of paper: ");
 
         sharedViewModel.getPaperAmountInteger().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
@@ -60,11 +60,8 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
             }
         });
 
-
-
-
         glassText = view.findViewById(R.id.glassCheck);
-        glassText.setText("Glass bottles: -");
+        glassText.setText("Glass bottles: ");
 
         sharedViewModel.getGlassAmountInteger().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
@@ -80,12 +77,12 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
         });
 
         aluminumText = view.findViewById(R.id.aluminumCheck);
-        aluminumText.setText("Number of cans: - ");
+        aluminumText.setText("Number of cans: ");
 
         sharedViewModel.getAluminumAmountInteger().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer value1) {
-                aluminumAmount = sharedViewModel.getGlassAmountInteger().getValue();
+                aluminumAmount = sharedViewModel.getAluminumAmountInteger().getValue();
             }
         });
 
@@ -99,40 +96,38 @@ public class CustomBottomSheetFragment extends BottomSheetDialogFragment {
         Button confirm = view.findViewById(R.id.confirmButton);
         confirm.setOnClickListener(v -> {
 
-
-
             int paperPoints = 0;
-            if (paperAmount != null) {
+            if (paperAmount != null)
                 paperPoints = paperAmount *  10;
-                sharedViewModel.updatePoints(0,paperPoints);
-            }
+
             int glassPoints = 0;
-            if(glassAmount != null){
+            if(glassAmount != null)
                 glassPoints = (glassAmount * 10);
-                sharedViewModel.updatePoints(1,glassPoints);
-            }
+
 
             int aluminumPoints = 0;
-            if(aluminumAmount != null){
+            if(aluminumAmount != null)
                 aluminumPoints = aluminumAmount / 2;
-                sharedViewModel.updatePoints(2,aluminumPoints);
-            }
-            int totalPoints = (paperPoints + glassPoints + aluminumPoints);
-            User.getInstance().setPoints(totalPoints);
-            sharedViewModel.updatePoints(3,totalPoints);
-            Toast.makeText(getContext(), "Total points: " + totalPoints, Toast.LENGTH_SHORT).show();
 
-            paperText.setText("Kgs of paper: -");
-            glassText.setText("Glass bottles: -");
-            aluminumText.setText("Number of cans: - ");
+
+            int totalPoints = (paperPoints + glassPoints + aluminumPoints);
+
+            System.out.println(aluminumPoints);
+
+
+            Toast.makeText(getContext(), "Total points added: " + totalPoints, Toast.LENGTH_SHORT).show();
+
 
             sharedViewModel.setEditTextValue(null);
 
-            JSONObject userResponse = null;
 
+
+            JSONObject userResponse = null;
+            User currUser = User.getInstance();
+            currUser.setPoints(totalPoints);
             try {
                 OkHttpHandler okHttpHandler = new OkHttpHandler();
-                userResponse = okHttpHandler.addPoints(User.getInstance().getId(), 1, 2, 3);
+                userResponse = okHttpHandler.addPoints(User.getInstance().getId(), paperPoints, glassPoints, aluminumPoints);
                 System.out.println("Response: " + userResponse);
             } catch (Exception e) {
                 e.printStackTrace();

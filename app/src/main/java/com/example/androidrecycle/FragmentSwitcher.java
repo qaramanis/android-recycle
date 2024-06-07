@@ -1,4 +1,4 @@
-package com.example.androidrecycle.user.home;
+package com.example.androidrecycle;
 
 public interface FragmentSwitcher {
     void switchFragment(int itemId);

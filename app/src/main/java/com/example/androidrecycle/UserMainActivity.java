@@ -23,7 +23,6 @@ import com.example.androidrecycle.user.account.UserAccountFragment;
 import com.example.androidrecycle.user.add.UserAddFragment;
 import com.example.androidrecycle.user.home.UserHomeFragment;
 import com.example.androidrecycle.user.map.UserMapFragment;
-import com.example.androidrecycle.user.home.FragmentSwitcher;
 import com.example.androidrecycle.user.rewards.UserRewardsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;

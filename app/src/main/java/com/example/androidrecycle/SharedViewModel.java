@@ -36,31 +36,12 @@ public class SharedViewModel extends ViewModel {
     public void setAluminumAmountString(String value) {aluminumAmountString.setValue(value);}
     public LiveData<String> getAluminumAmountString() {return aluminumAmountString;}
     public void setAluminumAmountInteger(int value){aluminumAmountInteger.setValue(value);};
-    public MutableLiveData<Integer> getAluminumAmountInteger() {return paperAmountInteger;}
+    public MutableLiveData<Integer> getAluminumAmountInteger() {return aluminumAmountInteger;}
 
 
 
     private final MutableLiveData<String> editTextValue = new MutableLiveData<>();
     public void setEditTextValue(String value) {editTextValue.setValue(value);}
     public LiveData<String> getEditTextValue() {return editTextValue;}
-
-    private final MutableLiveData<List<Integer>> points = new MutableLiveData<>(new ArrayList<>());
-    private static final int FIXED_SIZE = 4;
-
-    public SharedViewModel() {
-        List<Integer> initialPoints = new ArrayList<>(FIXED_SIZE);
-        for (int i = 0; i < FIXED_SIZE; i++) {
-            initialPoints.add(0);
-        }
-        points.setValue(initialPoints);
-    }
-
-    public void updatePoints(int index, int value) { //0 for paper, 1 for glass, 2 for aluminum,3 for total
-        List<Integer> currentPoints = points.getValue();
-        if (currentPoints != null && index >= 0 && index < FIXED_SIZE) {
-            currentPoints.set(index, value);
-            points.setValue(currentPoints);
-        }
-    }
 
 }

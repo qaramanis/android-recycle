@@ -116,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
-            //TODO check credentials from database
+
             if(currUser.getRole()==0){
                 intent = new Intent(RegisterActivity.this, UserMainActivity.class);
                 showRegisteredPopup(v, intent);
