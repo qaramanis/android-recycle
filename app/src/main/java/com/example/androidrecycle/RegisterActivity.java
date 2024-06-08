@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView textViewError;
     private EditText enterPassword;
     private EditText confirmPassword;
-    private int credentials = 3;
+    private final int credentials = 3;
 
 
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,27 +11,29 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="Requested Rewards"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ExpandableListView
-        android:id="@+id/pendingExpandable"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <ExpandableListView
-        android:id="@+id/completedExpandable"
+    <ListView
+        android:id="@+id/requestList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pendingExpandable" />
+        app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

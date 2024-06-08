@@ -93,10 +93,12 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if(currUser.getRole() == 0){
+                currUser = null;
                 intent.setClass(LoginActivity.this, UserMainActivity.class);
                 startActivity(intent);
                 finish();
             }else if (currUser.getRole()==1){
+                currUser = null;
                 intent = new Intent(LoginActivity.this, AdminMainActivity.class);
                 startActivity(intent);
                 finish();

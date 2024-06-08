@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
+    implementation(libs.rendering)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

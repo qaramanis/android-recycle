@@ -15,8 +15,8 @@ import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder> {
 
-    private Context context;
-    private List<Integer> imageList; // List of image resource IDs
+    private final Context context;
+    private final List<Integer> imageList; // List of image resource IDs
     private static OnItemClickListener onItemClickListener;
 
 

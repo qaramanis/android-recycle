@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModelProvider;
 public class User {
 
     private static User single_instance = null;
-    private int id;
-    private String username;
-    private int role;
+    private final int id;
+    private final String username;
+    private final int role;
     private int points;
 
     private User(int id, String username, int role, int points){
@@ -18,8 +18,7 @@ public class User {
     }
 
     public static synchronized User getInstance(int id, String username, int role, int points){
-        if (single_instance == null)
-            single_instance = new User(id, username, role, points);
+        single_instance = new User(id, username, role, points);
         return single_instance;
     }
 

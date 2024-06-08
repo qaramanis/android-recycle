@@ -44,7 +44,8 @@ public class UserRewardsFragment extends Fragment implements com.example.android
             R.drawable.ic_image,
             R.drawable.ic_image,
             R.drawable.ic_image
-    );;
+    );
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container,
                              Bundle savedInstanceState) {

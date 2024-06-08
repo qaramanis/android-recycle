@@ -55,9 +55,8 @@ public class RewardsHistoryFragment extends Fragment {
                     Map<String, String> reward = new HashMap<>();
                     JSONObject requestItem = requestsArray.getJSONObject(i);
                     int rewardId = requestItem.getInt("reward_id");
-                    System.out.println(Integer.toString(rewardId));
+                    System.out.println(rewardId);
                     reward.put("line 1", Integer.toString(rewardId));
-                    int pending = requestItem.getInt("pending");
                     if(requestItem.isNull("approved")){
                         reward.put("line 2", "pending");
                     }else {

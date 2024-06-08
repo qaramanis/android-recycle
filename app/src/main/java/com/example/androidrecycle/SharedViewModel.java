@@ -15,7 +15,8 @@ public class SharedViewModel extends ViewModel {
 
     public void setPaperAmountString(String value) {paperAmountString.setValue(value);}
     public LiveData<String> getPaperAmountString() {return paperAmountString;}
-    public void setPaperAmountInteger(int value){paperAmountInteger.setValue(value);};
+    public void setPaperAmountInteger(int value){paperAmountInteger.setValue(value);}
+
     public MutableLiveData<Integer> getPaperAmountInteger() {return paperAmountInteger;}
 
 
@@ -25,7 +26,8 @@ public class SharedViewModel extends ViewModel {
 
     public void setGlassAmountString(String value) {glassAmountString.setValue(value);}
     public LiveData<String> getGlassAmountString() {return glassAmountString;}
-    public void setGlassAmountInteger(int value){glassAmountInteger.setValue(value);};
+    public void setGlassAmountInteger(int value){glassAmountInteger.setValue(value);}
+
     public MutableLiveData<Integer> getGlassAmountInteger() {return glassAmountInteger;}
 
 
@@ -35,7 +37,8 @@ public class SharedViewModel extends ViewModel {
 
     public void setAluminumAmountString(String value) {aluminumAmountString.setValue(value);}
     public LiveData<String> getAluminumAmountString() {return aluminumAmountString;}
-    public void setAluminumAmountInteger(int value){aluminumAmountInteger.setValue(value);};
+    public void setAluminumAmountInteger(int value){aluminumAmountInteger.setValue(value);}
+
     public MutableLiveData<Integer> getAluminumAmountInteger() {return aluminumAmountInteger;}
 
 

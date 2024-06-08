@@ -13,98 +13,58 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.androidrecycle.PopupHandler;
 import com.example.androidrecycle.R;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class RequestsExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private List<String> expandableListTitle;
-    private Map<String, List<String>> expandableListDetail;
+    private List<String> listGroup; // header titles
+    private HashMap<String, List<String>> listItem;
 
-    public RequestsExpandableListAdapter(Context context, List<String> expandableListTitle, Map<String, List<String>> expandableListDetail) {
+
+    public RequestsExpandableListAdapter(Context context, List<String> listDataHeader,
+                                       HashMap<String, List<String>> listChildData) {
         this.context = context;
-        this.expandableListTitle = expandableListTitle;
-        this.expandableListDetail = expandableListDetail;
+        this.listGroup = listDataHeader;
+        this.listItem = listChildData;
     }
-
-    @Override
-    public Object getChild(int listPosition, int expandedListPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .get(expandedListPosition);
-    }
-
-    @Override
-    public long getChildId(int listPosition, int expandedListPosition) {
-        return expandedListPosition;
-    }
-
-    //TODO parse data from somewhere
-    @Override
-    public View getChildView(int listPosition, final int expandedListPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-        final String expandedListText = (String) getChild(listPosition, expandedListPosition);
-        if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(android.R.layout.simple_list_item_2, null);
-        }
-        TextView expandedListText1 = convertView
-                .findViewById(android.R.id.text1);
-        TextView expandedListText2 = convertView
-                .findViewById(android.R.id.text2);
-        expandedListText1.setText(expandedListText);
-        expandedListText2.setText("extra");
-
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showRequestPopup();
-            }
-        });
-        return convertView;
-    }
-
-    @Override
-    public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .size();
-    }
-
-    @Override
-    public Object getGroup(int listPosition) {
-        return this.expandableListTitle.get(listPosition);
-    }
-
     @Override
     public int getGroupCount() {
-        return this.expandableListTitle.size();
+        return listGroup.size();
     }
 
     @Override
-    public long getGroupId(int listPosition) {
-        return listPosition;
+    public int getChildrenCount(int groupPosition) {
+        return listItem.get(listGroup.get(groupPosition)).size();
     }
 
     @Override
-    public View getGroupView(int listPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-        String listTitle = (String) getGroup(listPosition);
-        if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context
-                    .getSystemService(LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
-        }
-        TextView listTitleTextView = (TextView) convertView
-                .findViewById(android.R.id.text1);
-        listTitleTextView.setText(listTitle);
-        return convertView;
+    public Object getGroup(int groupPosition) {
+        return listGroup.get(groupPosition);
     }
 
+    @Override
+    public Object getChild(int groupPosition, int childPosition) {
+        return listItem.get(listGroup.get(groupPosition)).get(childPosition);
+    }
 
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
 
     @Override
     public boolean hasStableIds() {
@@ -112,44 +72,45 @@ public class RequestsExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public boolean isChildSelectable(int listPosition, int expandedListPosition) {
-        return true;
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        String groupTitle = (String) getGroup(groupPosition);
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
+        }
+        TextView textView = convertView.findViewById(android.R.id.text1);
+        textView.setText(groupTitle);
+        return convertView;
     }
 
-    public void showRequestPopup(){
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View  popupView = inflater.inflate(R.layout.popup_request_info, null);
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        String childTitle = (String) getChild(groupPosition, childPosition);
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(android.R.layout.simple_list_item_2, null);
+        }
+        TextView textView1 = convertView.findViewById(android.R.id.text1);
+        TextView textView2 = convertView.findViewById(android.R.id.text2);
+        textView1.setText("reward id");
+        textView2.setText("requested by"); // Example description
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-        popupWindow.setElevation(30);
-
-        popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-        PopupHandler.dimBehind(popupWindow);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
+        convertView.setOnClickListener(v -> {
+            if(groupPosition == 0){
+                //showRequestPopup();
+            }else{
+                Toast.makeText(context, "Already Completed", Toast.LENGTH_SHORT).show();
             }
         });
 
-        Button acceptBtn = popupView.findViewById(R.id.acceptBtn);
-        acceptBtn.setOnClickListener(v ->{
-            popupWindow.dismiss();
-            //TODO move to completed
-        });
-
-        Button rejectBtn = popupView.findViewById(R.id.rejectBtn);
-        rejectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-                //TODO move to rejected
-            }
-        });
+        return convertView;
     }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return false;
+    }
+
+
+
 }
