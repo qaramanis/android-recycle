@@ -66,8 +66,6 @@ public class UserAccountFragment extends Fragment {
         return view;
     }
 
-    //TODO add actions on item clicked
-
     public void showLogoutPopup(View view){
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -89,8 +87,8 @@ public class UserAccountFragment extends Fragment {
             }
         });
 
-        Button tryAgainBtn = popupView.findViewById(R.id.cancelBtn2);
-        tryAgainBtn.setOnClickListener(v -> popupWindow.dismiss());
+        Button cancel = popupView.findViewById(R.id.cancelBtn2);
+        cancel.setOnClickListener(v -> popupWindow.dismiss());
 
         Button registerButton = popupView.findViewById(R.id.logoutBtn2);
         registerButton.setOnClickListener(v -> {

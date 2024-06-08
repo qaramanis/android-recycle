@@ -24,10 +24,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private Intent intent;
+    private TextView usernameText;
     private TextView textViewError;
     private EditText enterPassword;
     private EditText confirmPassword;
@@ -48,18 +50,18 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmTxt);
         textViewError = findViewById(R.id.errorTxt);
 
-        TextWatcher textWatcher = new TextWatcher() {
+        TextWatcher passwordWatcher = new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed before text change
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @SuppressLint("SetTextI18n")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String password = enterPassword.getText().toString();
                 String confirmPs = confirmPassword.getText().toString();
-                if (TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPs)) {
+                if (TextUtils.isEmpty(password) && TextUtils.isEmpty(confirmPs)){
+                    textViewError.setVisibility(View.GONE);
+                }else if (TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPs)) {
                     textViewError.setText("Please fill out both fields");
                     textViewError.setVisibility(View.VISIBLE);
                 } else if (!password.equals(confirmPs)) {
@@ -69,15 +71,36 @@ public class RegisterActivity extends AppCompatActivity {
                     textViewError.setVisibility(View.GONE);
                 }
             }
-
             @Override
-            public void afterTextChanged(Editable s) {
-                // No action needed after text change
-            }
+            public void afterTextChanged(Editable s) {}
         };
 
-        enterPassword.addTextChangedListener(textWatcher);
-        confirmPassword.addTextChangedListener(textWatcher);
+        enterPassword.addTextChangedListener(passwordWatcher);
+        confirmPassword.addTextChangedListener(passwordWatcher);
+
+        usernameText = findViewById(R.id.usernameTxt);
+        TextView usnmError = findViewById(R.id.usernameErrorTxt);
+
+        TextWatcher usernameWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String username = usernameText.getText().toString();
+                if(TextUtils.isEmpty(username)){
+                    usnmError.setText("Username can't be empty");
+                    usnmError.setVisibility(View.VISIBLE);
+                }else{
+                    usnmError.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        };
+
+        usernameText.addTextChangedListener(usernameWatcher);
 
         //0 for user, 1 for taken username, else password error
         Button registerCheck = findViewById(R.id.registerCheckBtn);
@@ -102,8 +125,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             try {
-                boolean succsess = Boolean.parseBoolean(userResponse.getString("success"));
-                if(!succsess){
+                boolean success = Boolean.parseBoolean(userResponse.getString("success"));
+                if(!success){
                     return;
                 }else{
                     JSONObject userData = userResponse.getJSONObject("user");

@@ -10,7 +10,7 @@
         android:id="@+id/usernameTxt"
         android:layout_width="244dp"
         android:layout_height="48dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="280dp"
         android:ems="10"
         android:hint="@string/username_txt"
         android:importantForAutofill="no"
@@ -18,9 +18,87 @@
         android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/errorTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:text="Passwords don't match"
+        android:textColor="#D32F2F"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/enterPswdLightTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/enterPswdLightTxt"
+        app:layout_constraintTop_toTopOf="@+id/enterPswdLightTxt"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/cancelLightBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="@string/cancel"
+        app:layout_constraintStart_toStartOf="@+id/confirmTxt"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTxt" />
+
+    <Button
+        android:id="@+id/registerCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelLightBtn"
+        app:layout_constraintEnd_toEndOf="@+id/confirmTxt"
+        app:layout_constraintTop_toBottomOf="@+id/confirmTxt"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <TextView
+        android:id="@+id/enterPswdLightTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/enter_password"
+        app:layout_constraintBottom_toTopOf="@+id/enterTxt"
+        app:layout_constraintStart_toStartOf="@+id/enterTxt" />
+
+    <EditText
+        android:id="@+id/confirmTxt"
+        android:layout_width="244dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Confirm password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterTxt" />
+
+    <TextView
+        android:id="@+id/enterUsrNmTxtLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/enter_username"
+        app:layout_constraintBottom_toTopOf="@+id/usernameTxt"
+        app:layout_constraintStart_toStartOf="@+id/usernameTxt" />
+
+    <TextView
+        android:id="@+id/reEnterPswdLightTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/reenter_password"
+        app:layout_constraintBottom_toTopOf="@+id/confirmTxt"
+        app:layout_constraintStart_toStartOf="@+id/confirmTxt" />
 
     <EditText
         android:id="@+id/enterTxt"
@@ -39,79 +117,18 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameTxt"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.756" />
 
     <TextView
-        android:id="@+id/enterUsrNmTxtLight"
+        android:id="@+id/usernameErrorTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="@string/enter_username"
-        app:layout_constraintBottom_toTopOf="@+id/usernameTxt"
-        app:layout_constraintStart_toStartOf="@+id/usernameTxt" />
-
-    <TextView
-        android:id="@+id/enterPswdLightTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="@string/enter_password"
-        app:layout_constraintBottom_toTopOf="@+id/enterTxt"
-        app:layout_constraintStart_toStartOf="@+id/enterTxt" />
-
-    <TextView
-        android:id="@+id/reEnterPswdLightTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="@string/reenter_password"
-        app:layout_constraintBottom_toTopOf="@+id/confirmTxt"
-        app:layout_constraintStart_toStartOf="@+id/confirmTxt" />
-
-    <EditText
-        android:id="@+id/confirmTxt"
-        android:layout_width="244dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Confirm password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterTxt" />
-
-    <Button
-        android:id="@+id/cancelLightBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/cancel"
-        app:layout_constraintStart_toStartOf="@+id/confirmTxt"
-        app:layout_constraintTop_toBottomOf="@+id/confirmTxt" />
-
-    <Button
-        android:id="@+id/registerCheckBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/register"
-        app:layout_constraintBottom_toBottomOf="@+id/cancelLightBtn"
-        app:layout_constraintEnd_toEndOf="@+id/confirmTxt"
-        app:layout_constraintTop_toBottomOf="@+id/confirmTxt" />
-
-    <TextView
-        android:id="@+id/errorTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="4dp"
-        android:text="passwords don't match"
+        android:layout_marginTop="5dp"
+        android:text="Username can't be empty"
         android:textColor="#D32F2F"
         android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/enterTxt"
-        app:layout_constraintStart_toEndOf="@+id/enterPswdLightTxt" />
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/usernameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
