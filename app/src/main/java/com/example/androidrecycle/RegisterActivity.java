@@ -127,6 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 boolean success = Boolean.parseBoolean(userResponse.getString("success"));
                 if(!success){
+                    showErrorPopup(v);
                     return;
                 }else{
                     JSONObject userData = userResponse.getJSONObject("user");
